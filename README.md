@@ -277,3 +277,24 @@ Worker Nodes: Run the application workloads and execute containers. Always prese
 
 ============================================================================================================================================================================================
 
+6 Kubernetes security  
+
+i)SecurityContext:
+  allowPrivileageEscalutation: false
+  runAsNonRoot: true
+  capabality:
+    drop:
+      -ALL
+  readOnlyRootFilesystem: true    
+
+
+ii) snyk iac test deployment.yaml
+
+iii) CVE Vulnerabilities issue
+
+============================================================================================================================================================================================
+
+
+
+
+  
