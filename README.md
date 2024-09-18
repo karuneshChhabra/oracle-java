@@ -295,6 +295,97 @@ iii) CVE Vulnerabilities issue
 ============================================================================================================================================================================================
 
 
+7 what is helidon based microservice 
 
+
+
+Helidon is a set of Java libraries for creating microservices, particularly with a focus on cloud-native and lightweight microservices architecture. It is designed by Oracle to help developers build microservices with Java SE and Jakarta EE technologies. Helidon comes in two primary flavors: Helidon SE and Helidon MP, catering to different levels of complexity and development approaches.
+
+Types of Helidon-Based Microservices:
+Helidon SE (Simple Environment):
+Lightweight and Functional: Helidon SE is a lightweight, functional programming model that uses Java SE for building microservices without the overhead of application servers or frameworks.
+Reactive Programming: It’s reactive and supports asynchronous programming models, making it efficient for high-performance, non-blocking microservices.
+Lower Overhead: Since it doesn’t include Jakarta EE or MicroProfile standards, it is smaller in size, faster to start, and designed for developers who need more control over their microservices without a large framework.
+Helidon MP (MicroProfile):
+Standards-Based: Helidon MP is built on top of Jakarta EE and MicroProfile standards. It includes familiar APIs like JAX-RS for RESTful services, CDI for dependency injection, and JSON-B for JSON processing.
+Easier Migration: For developers coming from Java EE or who want to leverage the MicroProfile specification for fault tolerance, metrics, health checks, and configuration, Helidon MP is the go-to choice.
+Enterprise-Ready: It provides enterprise-level features like security, fault tolerance, and configuration management out of the box.
+Key Features of Helidon-Based Microservices:
+Cloud-Native: Designed for running on cloud infrastructure, Helidon includes features for Kubernetes integration, health checks, and monitoring, making it easy to deploy and manage in containerized environments.
+
+Fast Startup Time: Helidon microservices are designed to be lightweight and fast. Since Helidon SE avoids heavy frameworks, it results in faster startup times, making it ideal for microservices in cloud or container-based environments.
+
+Developer-Friendly: Helidon offers an easy-to-use API for building RESTful services, integrating with databases, and handling configuration. It supports declarative and programmatic approaches for building services.
+
+Reactive Programming (Helidon SE): Helidon SE uses reactive streams, which is particularly useful for handling high-concurrency workloads or building real-time applications.
+
+MicroProfile Features (Helidon MP):
+
+Fault Tolerance: Support for handling service failures, retries, circuit breakers, etc.
+Configuration: Centralized management of configuration with external configuration sources.
+Metrics: Out-of-the-box metrics support for monitoring microservice performance.
+Health Checks: Built-in health check APIs for container orchestration platforms like Kubernetes to determine if a service is ready or live.
+Example Architecture:
+In a Helidon-based microservice architecture, you can have multiple microservices (each being independent units of functionality) interacting through REST APIs or other protocols, deployed in a cloud-native environment, often managed by an orchestration platform like Kubernetes.
+
+Helidon SE would be suitable for smaller, lightweight services that prioritize performance and minimalism.
+Helidon MP would be used for microservices that require compliance with enterprise standards (such as MicroProfile) and enterprise-grade features like resilience and observability.
+
+
+Example Code for a Simple Helidon SE Microservice:
+java
+Copy code
+import io.helidon.webserver.WebServer;
+import io.helidon.webserver.Routing;
+import io.helidon.webserver.Service;
+import io.helidon.webserver.ServerRequest;
+import io.helidon.webserver.ServerResponse;
+
+public class Main {
+    public static void main(String[] args) {
+        WebServer server = WebServer.create(Routing.builder()
+                .get("/", Main::handleGet)
+                .build());
+
+        server.start();
+    }
+
+    private static void handleGet(ServerRequest req, ServerResponse res) {
+        res.send("Hello from Helidon SE!");
+    }
+}
+Example Code for a Helidon MP Microservice Using JAX-RS:
+java
+Copy code
+import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
+
+@ApplicationScoped
+@Path("/hello")
+public class HelloResource {
+
+    @GET
+    public Response hello() {
+        return Response.ok("Hello from Helidon MP!").build();
+    }
+}
+Kubernetes Integration:
+Helidon microservices can be easily integrated into a Kubernetes environment, thanks to its cloud-native features like:
+
+Health checks for Kubernetes liveness and readiness probes.
+Metrics for Prometheus/Grafana integration.
+ConfigMap integration to dynamically load configurations.
+
+Why Use Helidon for Microservices?
+Lightweight: Helidon SE offers a minimalistic approach, which is great for services where performance and resource efficiency are critical.
+Standard-Based: Helidon MP brings enterprise-grade capabilities and compliance with MicroProfile and Jakarta EE, making it ideal for large-scale enterprise systems.
+Cloud-Native Features: Pre-built support for Kubernetes, Docker, and other cloud-native platforms makes it easy to deploy and manage in modern environments.
+Flexibility: Depending on your project needs, you can choose between the lightweight, reactive Helidon SE or the enterprise-friendly, standard-compliant Helidon MP.
+In summary, a Helidon-based microservice is a modern Java microservice designed to work in lightweight, cloud-native environments, with options to use a minimalist framework (Helidon SE) or an enterprise-ready framework (Helidon MP) depending on your needs.
+
+
+============================================================================================================================================================================================
 
   
